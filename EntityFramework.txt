@@ -1,0 +1,109 @@
+Entity Framework 6 Features:
+we will look at following things :
+1)using multiple dbcontext with same database
+2)Migration Features
+3)Scaffolding
+4)Async Communication
+
+
+3 approaches for working with Entity Framework
+1)Database first approach
+2)Code first approach
+3)Model First Approach
+for any of the above approach we ll always be using Entity Framework DbContext Api
+
+Steps:
+New Project ->Other project type -> Blank Solution -> name as Books
+Add project to this solution : right click on solution -> add new Project -> ASP.Net Web Application 
+->name as Book.Web(MVC with Individual user Authentication)
+
+Now the actual entity that we want to store in database we will keep it in separate project we ll 
+keep it in project that might represent business logic
+
+new project -> select simple class library -> call it Books.Entities
+
+Books.Web will reference Books.Entities(Books.Web will have a reference file right click on reference and 
+click on Add reference , checkbox on Books.Entities and click OK.
+
+Click on Books.Entities -> select class that will represent a Book(public class)
+public int Id {get;set;}
+[Required]
+[StringLength(255)]
+public string Title {get;set;}
+public Genre Category {get;set;}
+reference -> add reference ->Assemblies ->search annotations -> checkbox ->ok
+
+create another class in Books.Entities only and name it as Genre(public enum)
+public enum Genre
+{
+NonFiction,
+Romance,
+Action,
+ScienceFiction
+}
+BUILD
+so we defined an entity that uses an enum
+Books.Entities will define the pure entity or there can be a business logic there but i dont want 
+infrastructure things like EntityFramework, we can use that with different assembly that ties together 
+my entities to a specific DBContext
+
+now we ll add a new folder to Books.Web and name it as DataContexts
+Add a class BooksDb (derived from DbContext class)which will represent my gateway to the database
+ to query anything book related
+it has a property of type DbSet that works against book
+public DbSet<Book> Books{get;set;}//(using Books.Entities)
+DbSet will map to a table
+the website will contain the UI and the infrastructure  
+
+
+Go to Models 
+IdentityModel.cs it is the database contexts that is derived from IdentityDbContext it is the one 
+that knows how to store user information user's role password logins etc cut the class from there
+
+
+
+new class in DbContext name as IdentityDb paste the class here name it as IdentityDb
+
+copy the constructor of IdentityDb into BooksDb as they are both going to talk to same database 
+through same database connections
+
+******************************************************************************************************************
+Migrations allow you to create an initial database and see the database with data,apply schema changes as our
+ model changes and also generate database scripts
+we are allowed to have only one single migration folder in our project and previously the migrations worked only 
+with a sing DB context
+but the new feature allows us to work with multiple db context in same project that point to the same database 
+and all require some migrations
+
+this is done with the help of few switches that we apply to migration commands
+1)-ContextTypeName to locate the data context that you want to create migrations for
+2)-MigrationsDirectory
+
+In Package Manager Console
+
+enable-migrations -ContextTypeName IdentityDb -MigrationsDirectory DataContexts\IdentityMigrations
+//This will add a configuration.cs file
+enable-migrations -ContextTypeName BooksDb -MigrationsDirectory DataContexts\BookMigrations
+
+to create initial table structure
+add-migration -ConfigurationTypeName [copy namespace].Configuration "InitialCreate"
+
+update-database -ConfigurationTypeName[namespace].Configuration
+
+
+***************************************************************************************************************
+Scaffolding
+go to Controllers add controller with MVC5 Controller with view and Entity Framework
+name as BooksController
+add [Authorize] to the controller class
+
+go to shared go to Layout.cshtml
+go to navigation bar
+copy the link page to home and replace home with Books
+Run the application
+
+
+go to create view
+go to shared and add a folder EditorTemplates
+right click add view  
+checkbox create partial view name it as Genre

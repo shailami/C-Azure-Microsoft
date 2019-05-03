@@ -1,0 +1,50 @@
+IAAS
+-COMPUTE
+-NETWORK
+-STORAGE
+
+UNDER STORAGE
+-FILE SHARE
+-DATABASE
+-ETC
+
+STARTING WITH STORAGE
+******************************************************************************************************************
+AZURE STORAGE
+
+DIFF KIND OF STORAGE ENTITIES
+->DISKS----persistent disks for azure iaas VM's
+standard storage disks
+
+premium storage disks
+
+
+SDD-SOLID DISK DRIVE
+HDD-HARD DISK DRIVE
+->FILES
+->BLOBS
+->TABLES
+->QUEUES
+
+
+FREE
+SHARED
+BASIC
+STANDARD
+PREMIUM
+ARE DIFF LEVEL OF SERVICES PROVIDED BY AZURE (CATEGORIZATION)
+
+MANAGED DISKS-
+
+
+
+File storage 
+
+->fully managed file shares in cloud
+->SMB and REST access
+SMB is a networking protocol that allows to configure file share 
+6 machines writing logs on central machine using file share configuration
+->"lift and shift" legacy apps
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________|
+____________________________________________________________________________________________________|

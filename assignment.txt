@@ -1,0 +1,6 @@
+FILE_> FILR SHARE_> FILE 1 
+
+hierarchy for blob table queue file 
+blob-> container->blob storage-> file
+what type of data to be stored in each storage ???????
+google images 
