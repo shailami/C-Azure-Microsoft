@@ -1,0 +1,6 @@
+C:\Users\Shailaja\source\repos\Books\Books.Entities\bin\Debug\Books.Entities.dll
+C:\Users\Shailaja\source\repos\Books\Books.Entities\bin\Debug\Books.Entities.pdb
+C:\Users\Shailaja\source\repos\Books\Books.Entities\obj\Debug\Books.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Shailaja\source\repos\Books\Books.Entities\obj\Debug\Books.Entities.dll
+C:\Users\Shailaja\source\repos\Books\Books.Entities\obj\Debug\Books.Entities.pdb
+C:\Users\Shailaja\source\repos\Books\Books.Entities\obj\Debug\Books.Entities.csprojAssemblyReference.cache
